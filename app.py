@@ -16,7 +16,7 @@ openai_api_key = os.getenv("OPENAI_API_KEY")
 assert openai_api_key, "❌ OPENAI_API_KEY not found in environment variables"
 
 # Streamlit UI
-st.title("📄 OCRmyPDF + RAG PDF Assistant")
+st.title("📄 OCRmyPDF + RAG Assistant")
 
 uploaded_file = st.file_uploader("Upload a PDF", type="pdf")
 
