@@ -17,12 +17,16 @@ It uses OCRmyPDF for text extraction, FAISS for semantic search, and OpenAI's GP
 
 ---
 
-🔀 Branches
-	
-	- main – baseline version. The application extracts text from PDFs (with OCR if needed), splits it into chunks, and retrieves relevant chunks to answer the user’s question. The model is prompted to return exact quotations, but no verification is performed to check whether those quotes are actually present in the source text.
-	- citation-with-no-verification – enhanced version with citation checking. After generating an answer, the app checks whether each quote returned by the model exactly matches the original text. Mismatches can be flagged or rejected, ensuring higher factual accuracy.
+## 🔀 Branches
 
- ---
+- **`main`** – baseline version. The app splits PDF content into chunks and prompts the language model to extract relevant quotes, but **does not verify** whether the quotes are truly present in the original text.
+
+- **`citation-with-no-verification`** – this branch includes quote prompting (i.e., the model is asked to return exact quotes from the text), but **does not perform quote verification** against the source document. It's suitable for prototyping or fast testing, but it does not prevent hallucinated citations.
+
+> Use `main` to test basic RAG pipeline behavior.  
+> Use `citation-with-no-verification` if you're focused on generating structured quotes without implementing verification logic.
+
+---
 
 ## 🚀 Usage
 1. Clone the repo
