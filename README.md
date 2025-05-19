@@ -35,14 +35,10 @@ streamlit run app.py
 
 ---
 
-## 📦 Dependencies
-- `streamlit`
-- `ocrmypdf`
-- `PyMuPDF`
-- `langchain`
-- `openai`
-- `faiss-cpu`
-- `python-dotenv`
+### 📦 System dependencies (required for OCR):
+```bash
+brew install tesseract ghostscript
+```
 
 ---
 
