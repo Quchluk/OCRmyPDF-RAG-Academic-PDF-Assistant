@@ -8,13 +8,10 @@ It uses OCRmyPDF for text extraction, FAISS for semantic search, and OpenAI's GP
 ## ✅ Features
 - 📥 Upload any PDF (scanned or digital)
 - 🔎 Automatically runs OCR (if needed) using `ocrmypdf`
-- 🧠 By deafult chunks text into ~500-word segments with 100-word overlap
+- 🧠 By default chunks text into ~500-word segments with 100-word overlap
 - 🧬 Embeds text using `OpenAIEmbeddings`
 - 🗂 Creates a per-document FAISS vector index
-- 🤖 Uses GPT (via LangChain) to answer user questions
-- 📚 Displays page-specific citations
-- ✨ Highlights the most relevant section inside each chunk based on query-word overlap
-
+- 🤖 Uses GPT (via LangChain) to answer user questions by extracting quotes from top-matching chunks
 ---
 
 ## 🚀 Usage
@@ -46,6 +43,17 @@ brew install tesseract ghostscript
 - Academic reading assistant 
 - Searchable interface for scanned historical documents
 - Lightweight Q&A assistant for any PDF
+
+---
+
+## 🔀 Branches
+
+- **`main`** – baseline version. The app splits PDF content into chunks and prompts the language model to extract relevant quotes, but **does not verify** whether the quotes are truly present in the original text.
+
+- **`citation-with-no-verification`** – this branch includes quote prompting (i.e., the model is asked to return exact quotes from the text), but **does not perform quote verification** against the source document. It's suitable for prototyping or fast testing, but it does not prevent hallucinated citations.
+
+> Use `main` to test basic RAG pipeline behavior.  
+> Use `citation-with-no-verification` if you're focused on generating structured quotes without implementing verification logic.
 
 ---
 
