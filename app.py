@@ -16,7 +16,7 @@ openai_api_key = os.getenv("OPENAI_API_KEY")
 assert openai_api_key, "❌ OPENAI_API_KEY not found in environment variables"
 
 # Streamlit UI
-st.title("📄 OCRmyPDF + RAG Assistant")
+st.title("📄 OCRmyPDF + RAG Academic PDF Assistant")
 
 uploaded_file = st.file_uploader("Upload a PDF", type="pdf")
 
@@ -87,15 +87,31 @@ if uploaded_file:
     query = st.text_input("Enter your question:")
 
     if query:
-        with st.spinner("🔎 Searching for an answer..."):
-            result = qa({"query": query})
+        with st.spinner("🔎 Retrieving and generating exact quotes..."):
+            retrieved_docs = retriever.get_relevant_documents(query)
+            joined_docs = "\n\n".join(doc.page_content for doc in retrieved_docs)
 
-        st.markdown("### ✅ Answer:")
-        st.write(result["result"])
+            prompt = f'''
+You are an academic assistant helping a researcher analyze a document.
 
-        st.markdown("### 📚 Citations:")
-        for doc in result["source_documents"]:
-            page = doc.metadata.get("page", "?")
-            st.markdown(f"**Page {page}**")
-            st.write(doc.page_content.strip())
-            st.markdown("---")
+The user has asked the following question:
+"{query}"
+
+Below are extracted passages from the document. Your task is to select up to **three exact quotations** from these passages that directly answer or relate to the user's question.
+
+✳️ Each quotation must be:
+- Verbatim (copied exactly from the input text)
+- Brief (1–3 sentences)
+- Relevant to the user's query
+
+Do not explain or paraphrase anything. Just return a list of quotes, one per line, optionally with a page number in parentheses if identifiable.
+
+--- BEGIN TEXT ---
+{joined_docs}
+--- END TEXT ---
+'''
+
+            response = llm.invoke(prompt)
+
+        st.markdown("### ✅ Exact Quotes:")
+        st.write(response)
