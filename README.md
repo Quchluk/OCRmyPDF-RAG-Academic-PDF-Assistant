@@ -18,8 +18,10 @@ It uses OCRmyPDF for text extraction, FAISS for semantic search, and OpenAI's GP
 ---
 
 🔀 Branches
-	•	main – baseline version. The application extracts text from PDFs (with OCR if needed), splits it into chunks, and retrieves relevant chunks to answer the user’s question. The model is prompted to return exact quotations, but no verification is performed to check whether those quotes are actually present in the source text.
-	•	citation-with-no-verification – enhanced version with citation checking. After generating an answer, the app checks whether each quote returned by the model exactly matches the original text. Mismatches can be flagged or rejected, ensuring higher factual accuracy.
+	
+	- main – baseline version. The application extracts text from PDFs (with OCR if needed), splits it into chunks, and retrieves relevant chunks to answer the user’s question. The model is prompted to return exact quotations, but no verification is performed to check whether those quotes are actually present in the source text.
+	- citation-with-no-verification – enhanced version with citation checking. After generating an answer, the app checks whether each quote returned by the model exactly matches the original text. Mismatches can be flagged or rejected, ensuring higher factual accuracy.
+
  ---
 
 ## 🚀 Usage
