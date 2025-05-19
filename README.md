@@ -1,4 +1,4 @@
-# 📄 OCRmyPDF + RAG Academic PDF Assistant
+# 📄 OCRmyPDF + RAG PDF Assistant
 
 This Streamlit app lets you upload a scanned or digital PDF and interact with it using a Retrieval-Augmented Generation (RAG) pipeline.
 It uses OCRmyPDF for text extraction, FAISS for semantic search, and OpenAI's GPT for answering questions.
